@@ -1,5 +1,6 @@
 # Demo of Cogs message broker on events from sensors attached to a Raspberry Pi.
 
+
 ## Overview
 
 This is a demo of Cogs' campaign-driven message delivery based on sensor data.
@@ -10,11 +11,16 @@ POST /event route. Rules defined in multiple campaigns determine which (if any)
 message should be delivered to subscribers.
 
 Hood (cab) tilt sensing is the primary example. A mercury-actuated switch
-monitors whether the hood is open or closed.
+monitors whether the hood is open or closed. This device is powered by
+the Pi's 3.3v source (pin 1), return (ground) is pin 14, and the signal line
+is pin 22 (gpio 25).
 
-Driver-side door state (open/closed) is the secondary example. A magnetic
+Driver-side door state (open/closed) is the second example. A magnetic
 field detection sensor determines if the door is closed or open base on the
-proximity of the door's magnet to the sensor. 
+proximity of the door's magnet to the sensor. This device is also powered
+by the Pi's 3.3v source (pin 1), return (ground) is also pin 14, and the
+signal line is pin 32 (gpio 12).
+
 
 ## Setup Instructions
 
@@ -23,39 +29,52 @@ Required Items
 * USB Wi-Fi adapter for Raspberry Pi (Panda Wireless devices work well with Linux)
 * Node.js 5+ installed on Raspberry Pi
 * 3-lead mercury-actuated tilt switch
-* 3-lead magnetic-field detector
-* 3x 220-ohm 1/8 watt resistors
+* 3-lead magnetic-sensor coil
+* hard-drive magnet (or one of similar strength)
+* 2x 330-ohm 1/8 watt resistors
 
 Cogswell Profile Details
 * Namespace: "auto-monitor"
 * Campaigns:
 ** Hood Open 
+*** Filter: hood-open has value
 *** Filter: newest 2 events
 *** Condition: oldest hood-open is_false
 *** Condition: newest hood-open is_true
 ** Hood Closed
+*** Filter: hood-open has value
 *** Filter: newest 2 events
 *** Condition: oldest hood-open is_true
 *** Condition: newest hood-open is_false
 ** Driver Door Open
+*** Filter: driver-door-open has value
 *** Filter: newest 2 events
 *** Condition: oldest driver-door-open is_false
 *** Condition: newest driver-door-open is_true
 ** Driver Door Closed
+*** Filter: driver-door-open has value
 *** Filter: newest 2 events
 *** Condition: oldest driver-door-open is_true
 *** Condition: newest driver-door-open is_false
 
+
 ## Build Instructions
 
-There is no compilation necessary for this project. Simply run the
-auto-monitor daemon:
+There is no compilation necessary for this project.
 
+Simply run the auto-monitor daemon on the Raspberry Pi:
 ```
-node monitor.js
+sudo node monitor.js
+```
+
+Then run the messages subscription daemon on a different system to 
+confirm message deliveries:
+```
+node messages.js
 ```
 
 
 ## Authorship
 Joel Edwards <joeledwards@gmail.com>
 https://github.com/joeledwards/
+
