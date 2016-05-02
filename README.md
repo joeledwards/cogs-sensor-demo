@@ -1,11 +1,11 @@
-# Demo of Cogs message broker on events from sensors attached to a Raspberry Pi.
+# Demo of Cogs message broker on sensor-driven events from a Raspberry Pi.
 
 
 ## Overview
 
 This is a demo of Cogs' campaign-driven message delivery based on sensor data.
 The fully-integrated example involes a Lego Technic truck with multiple
-on-board sensors which tripped by various physical interactions with the
+on-board sensors which are tripped by various physical interactions with the
 vehicle. Changes in state trigger the delivery of a value to Cogs via the
 POST /event route. Rules defined in multiple campaigns determine which (if any)
 message should be delivered to subscribers.
@@ -77,4 +77,16 @@ node messages.js
 ## Authorship
 Joel Edwards <joeledwards@gmail.com>
 https://github.com/joeledwards/
+
+
+## Attribution
+
+NPM Modules Used
+* cogs-sdk (ISC License) : https://www.npmjs.com/package/cogs-sdk
+* durations (MIT License) : https://www.npmjs.com/package/durations
+* lodash (MIT License) : https://www.npmjs.com/package/lodash
+* log-a-log (MIT License) : https://www.npmjs.com/package/log-a-log
+* moment (MIT License) : https://www.npmjs.com/package/moment
+* q (MIT License) : https://www.npmjs.com/package/q
+* pi-gpio (MIT License) : https://www.npmjs.com/package/pi-gpio
 
