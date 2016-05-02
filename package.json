@@ -1,0 +1,25 @@
+{
+  "name": "sensors",
+  "version": "1.0.0",
+  "description": "Cogs Sensor Demo",
+  "scripts": {
+    "start": "node monitor.js"
+  },
+  "keywords": [
+    "raspberry"
+  ],
+  "author": "Joel Edwards",
+  "license": "MIT",
+  "dependencies": {
+    "cogs-sdk": "^1.0.2",
+    "durations": "^2.1.0",
+    "lodash": "^4.11.1",
+    "log-a-log": "^1.2.1",
+    "moment": "^2.13.0",
+    "q": "^1.4.1",
+    "rpi-gpio": "^0.7.0"
+  },
+  "engines": {
+    "node": ">=5.0"
+  }
+}
