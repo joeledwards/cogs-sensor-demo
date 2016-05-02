@@ -79,6 +79,10 @@ node messages.js
 ```
 
 
+## Walk-Through Video
+[![Demo Walk-Through Video](https://img.youtube.com/vi/4XJyMkV2Gtg/0.jpg)](https://www.youtube.com/watch?v=4XJyMkV2Gtg)
+
+
 ## Authorship
 Joel Edwards <joeledwards@gmail.com>
 https://github.com/joeledwards/
