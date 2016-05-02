@@ -36,26 +36,26 @@ Required Items
 Cogswell Profile Details
 * Namespace: "auto-monitor"
 * Campaigns:
-** Hood Open 
-*** Filter: hood-open has value
-*** Filter: newest 2 events
-*** Condition: oldest hood-open is_false
-*** Condition: newest hood-open is_true
-** Hood Closed
-*** Filter: hood-open has value
-*** Filter: newest 2 events
-*** Condition: oldest hood-open is_true
-*** Condition: newest hood-open is_false
-** Driver Door Open
-*** Filter: driver-door-open has value
-*** Filter: newest 2 events
-*** Condition: oldest driver-door-open is_false
-*** Condition: newest driver-door-open is_true
-** Driver Door Closed
-*** Filter: driver-door-open has value
-*** Filter: newest 2 events
-*** Condition: oldest driver-door-open is_true
-*** Condition: newest driver-door-open is_false
+  * Hood Open 
+    * Filter: hood-open has value
+    * Filter: newest 2 events
+    * Condition: oldest hood-open is_false
+    * Condition: newest hood-open is_true
+  * Hood Closed
+    * Filter: hood-open has value
+    * Filter: newest 2 events
+    * Condition: oldest hood-open is_true
+    * Condition: newest hood-open is_false
+  * Driver Door Open
+    * Filter: driver-door-open has value
+    * Filter: newest 2 events
+    * Condition: oldest driver-door-open is_false
+    * Condition: newest driver-door-open is_true
+  * Driver Door Closed
+    * Filter: driver-door-open has value
+    * Filter: newest 2 events
+    * Condition: oldest driver-door-open is_true
+    * Condition: newest driver-door-open is_false
 
 
 ## Build Instructions
