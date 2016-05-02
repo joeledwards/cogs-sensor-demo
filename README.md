@@ -62,6 +62,11 @@ Cogswell Profile Details
 
 There is no compilation necessary for this project.
 
+Install dependency NPM modules.
+```
+npm install
+```
+
 Simply run the auto-monitor daemon on the Raspberry Pi:
 ```
 sudo node monitor.js
