@@ -15,8 +15,8 @@ monitors whether the hood is open or closed. This device is powered by
 the Pi's 3.3v source (pin 1), return (ground) is pin 14, and the signal line
 is pin 22 (gpio 25).
 
-Driver-side door state (open/closed) is the second example. A magnetic
-field detection sensor determines if the door is closed or open base on the
+Driver-side door state (open/closed) is the second example. A coil-based magnet
+detection sensor determines if the door is closed or open base on the
 proximity of the door's magnet to the sensor. This device is also powered
 by the Pi's 3.3v source (pin 1), return (ground) is also pin 14, and the
 signal line is pin 32 (gpio 12).
