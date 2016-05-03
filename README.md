@@ -36,26 +36,46 @@ Required Items
 Cogswell Profile Details
 * Namespace: "auto-monitor"
 * Campaigns:
-  * Hood Open 
-    * Filter: hood-open has value
-    * Filter: newest 2 events
-    * Condition: oldest hood-open is_false
-    * Condition: newest hood-open is_true
+  * Hood Open
+    * Rule: Hood Event is Last
+      * Filter: newest 1 event
+      * Filter: hood-open has value
+      * Condition: any event exists
+    * Rule: Hood Open
+      * Filter: hood-open has value
+      * Filter: newest 2 events
+      * Condition: oldest hood-open is_false
+      * Condition: newest hood-open is_true
   * Hood Closed
-    * Filter: hood-open has value
-    * Filter: newest 2 events
-    * Condition: oldest hood-open is_true
-    * Condition: newest hood-open is_false
+    * Rule: Hood Event is Last
+      * Filter: newest 1 event
+      * Filter: hood-open has value
+      * Condition: any event exists
+    * Rule: Hood Closed
+      * Filter: hood-open has value
+      * Filter: newest 2 events
+      * Condition: oldest hood-open is_true
+      * Condition: newest hood-open is_false
   * Driver Door Open
-    * Filter: driver-door-open has value
-    * Filter: newest 2 events
-    * Condition: oldest driver-door-open is_false
-    * Condition: newest driver-door-open is_true
+    * Rule: Door Event is Last
+      * Filter: newest 1 event
+      * Filter: driver-door-openn has value
+      * Condition: any event exists
+    * Rule: Driver Door Open
+      * Filter: driver-door-open has value
+      * Filter: newest 2 events
+      * Condition: oldest driver-door-open is_false
+      * Condition: newest driver-door-open is_true
   * Driver Door Closed
-    * Filter: driver-door-open has value
-    * Filter: newest 2 events
-    * Condition: oldest driver-door-open is_true
-    * Condition: newest driver-door-open is_false
+    * Rule: Door Event is Last
+      * Filter: newest 1 event
+      * Filter: driver-door-openn has value
+      * Condition: any event exists
+    * Rule: Driver Door Closed
+      * Filter: driver-door-open has value
+      * Filter: newest 2 events
+      * Condition: oldest driver-door-open is_true
+      * Condition: newest driver-door-open is_false
 
 
 ## Build Instructions
