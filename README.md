@@ -1,6 +1,5 @@
 # Demo of Cogs message broker on sensor-driven events from a Raspberry Pi.
 
-
 ## Overview
 
 This is a demo of Cogs' campaign-driven message delivery based on sensor data.
@@ -98,6 +97,8 @@ confirm message deliveries:
 node messages.js
 ```
 
+## User Guide
+[User Guide](https://docs.google.com/document/d/1BWbUH7H9F3YPTzjR2fjItrpVNJFvjZsN15PNgwpnWyI/edit?usp=sharing)
 
 ## Walk-Through Video
 [![Demo Walk-Through Video](https://img.youtube.com/vi/4XJyMkV2Gtg/0.jpg)](https://www.youtube.com/watch?v=4XJyMkV2Gtg)
