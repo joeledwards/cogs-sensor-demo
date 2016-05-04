@@ -28,6 +28,7 @@ cogs.api.getClient('cogs.json')
     ws.on('open', () => console.log(`WebSocket connection established.`));
     ws.on('message', (json) => {
       var message = JSON.parse(json);
+      //console.log(`raw message: ${json}`)
       console.log(`message: ${message.notification_msg}`)
     });
     //ws.on('acked', (messageId) => console.log(`message '${messageId}' acknowledged`));
