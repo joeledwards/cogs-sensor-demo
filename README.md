@@ -33,8 +33,11 @@ Required Items
 * hard-drive magnet (or one of similar strength)
 * 2x 330-ohm 1/8 watt resistors
 
-Cogswell Profile Details
+Cogswell Configurtion Details
 * Namespace: "auto-monitor"
+  * PK-Attribute: "vehicle-uuid" type "text"
+  * Attribute: "hood-open" type "boolean"
+  * Attribute: "driver-door-open" type "boolean"
 * Campaigns:
   * Hood Open
     * Rule: Hood Event is Last
