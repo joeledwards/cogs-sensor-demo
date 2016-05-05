@@ -31,6 +31,24 @@ cogs.api.getClient('cogs.json')
       var message = JSON.parse(json);
       //console.log(`raw message: ${json}`)
       console.log(`message: ${message.notification_msg}`)
+
+      var doorOpen = message.forwarded_event.attributes['driver-door-open'];
+      if (doorOpen === true) {
+        console.log('Door light on.');
+        pi.on(16).catch((error) => console.error(error));
+      } else if (doorOpen === false) {
+        console.log('Door light off.');
+        pi.off(16).catch((error) => console.error(error));
+      }
+
+      var hoodOpen = message.forwarded_event.attributes['hood-open'];
+      if (hoodOpen === true) {
+        console.log('Hood light on.');
+        pi.on(37).catch((error) => console.error(error));
+      } else if (hoodOpen === false) {
+        console.log('Hood light off.');
+        pi.off(37).catch((error) => console.error(error));
+      }
     });
     //ws.on('acked', (messageId) => console.log(`message '${messageId}' acknowledged`));
     ws.on('close', () => console.log(`closed`));

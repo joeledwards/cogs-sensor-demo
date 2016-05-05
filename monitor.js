@@ -50,13 +50,13 @@ function doorSensorLoop() {
         };
 
         client.sendEvent(namespace, eventName, attributes)
-        .then(() => console.log(`Sent status update event.`))
+        .then(() => console.log(`Door status update event delivered successfully.`))
         .catch((error) => console.error(`Error deliverying status update event: ${error}\n${error.stack}`));
       });
     }
 
     driverDoorOpen = newOpenValue;
-    console.log(`Driver door is ${driverDoorOpen ? 'open' : 'closed'}`);
+    //console.log(`Driver door is ${driverDoorOpen ? 'open' : 'closed'}`);
   })
   .catch((error) => {
     console.error(`Error reading pin ${doorSensorPin}: ${error}\n${error.stack}`);
@@ -89,13 +89,13 @@ function hoodSensorLoop() {
         };
 
         client.sendEvent(namespace, eventName, attributes)
-        .then(() => console.log(`Sent status update event.`))
+        .then(() => console.log(`Hood status update event delivered successfully.`))
         .catch((error) => console.error(`Error deliverying status update event: ${error}\n${error.stack}`));
       });
     }
 
     hoodOpen = newOpenValue;
-    console.log(`Hood is ${hoodOpen ? 'open' : 'closed'}`);
+    //console.log(`Hood is ${hoodOpen ? 'open' : 'closed'}`);
   })
   .catch((error) => {
     console.error(`Error reading pin ${hoodSensorPin}: ${error}\n${error.stack}`);

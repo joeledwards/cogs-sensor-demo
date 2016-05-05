@@ -1,0 +1,13 @@
+#!/bin/bash
+APP_NAME="cogs-demo-monitor"
+APP_PATH=`pwd`
+
+DATA_DIR=/opt/cogs/monitor
+LOG_DIR=$DATAPDIR/
+
+INFO_LOG=$LOG_DIR/info.log
+ERROR_LOG=$LOG_DIR/error.log
+PID_FILE=$APP_DIR/$APP_NAME.pid
+
+pm2 delete $APP_NAME
+pm2 start $APP_PATH/monitor.js --name $APP_NAME -o $INFO_LOG -e $ERROR_LOG -p $PID_FILE
