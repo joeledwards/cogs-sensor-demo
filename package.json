@@ -11,7 +11,7 @@
   "author": "Joel Edwards",
   "license": "MIT",
   "dependencies": {
-    "cogs-sdk": "^1.0.2",
+    "cogs-sdk": "^2.1.0",
     "durations": "^2.1.0",
     "lodash": "^4.11.1",
     "log-a-log": "^1.2.1",
