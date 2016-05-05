@@ -3,7 +3,9 @@ APP_NAME="cogs-demo-monitor"
 APP_PATH=`pwd`
 
 DATA_DIR=/opt/cogs/monitor
-LOG_DIR=$DATAPDIR/
+LOG_DIR=$DATA_DIR/log
+
+mkdir -p $LOG_DIR
 
 INFO_LOG=$LOG_DIR/info.log
 ERROR_LOG=$LOG_DIR/error.log
