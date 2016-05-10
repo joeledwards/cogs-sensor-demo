@@ -8,7 +8,7 @@ const cogs = require('cogs-sdk');
 const pi = require('./pi');
 
 var namespace = 'auto-monitor';
-var vehicleUuid = 'deadbeef-dead-beef-dead-beefdeadbeef';
+var vehicleUuid = 'be56ed7a-e24d-4cd5-8f3e-437c87ca31a9';
 var attributes = {
   'vehicle-uuid': vehicleUuid
 };

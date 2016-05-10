@@ -29,7 +29,60 @@ function getCogsClient() {
 }
 
 var namespace = 'auto-monitor';
-var vehicleUuid = 'deadbeef-dead-beef-dead-beefdeadbeef';
+var vehicleUuid = 'be56ed7a-e24d-4cd5-8f3e-437c87ca31a9';
+
+// Sends an event via the supplied Cogs client
+function sendEvent(namespace, attributes, eventName) {
+  return getCogsClient().sendEvent(namespace, eventName, attributes)
+      .then(() => `Event '${eventName}' sent successfully.`)
+      .catch((error) => `Error sending event '${eventName}': ${error}\n${error.stack}`)
+}
+
+// Door Event
+function doorEvent(isOpen) {
+  var eventName = `driver-door-${isOpen ? 'opened' :  'closed'}-${moment().toISOString()}`
+  var attributes = {
+    'vehicle-uuid': vehicleUuid,
+    'driver-door-open': newOpenValue
+  };
+
+  sendEvent(namespace, attributes, eventName);
+}
+
+// Door Opened
+function doorOpened() {
+  console.log('Sending door open event.');
+  doorEvent(true);
+}
+
+// Door Closed
+function doorClosed() {
+  console.log('Sending door closed event.');
+  doorEvent(false);
+}
+
+// Hood Event
+function hoodEvent(isOpen) {
+  var eventName = `hood-${isOpen ? 'opened' :  'closed'}-${moment().toISOString()}`
+  var attributes = {
+    'vehicle-uuid': vehicleUuid,
+    'hood-open': newOpenValue
+  };
+
+  sendEvent(namespace, attributes, eventName);
+}
+
+// Hood Opened
+function hoodOpened() {
+  console.log('Sending hood open event.');
+  hoodEvent(true);
+}
+
+// Hood Closed
+function hoodClosed() {
+  console.log('Sending hood closed event.');
+  hoodEvent(false);
+}
 
 // Driver door monitor.
 var driverDoorOpen = false;
@@ -40,23 +93,14 @@ function doorSensorLoop() {
     var now = moment().valueOf();
 
     if (newOpenValue != driverDoorOpen) {
-      lastStatusEvent = now;
-      console.log(`Sending door status update event: driver-door-open=${newOpenValue}`);
-      getCogsClient().then((client) => {
-        var eventName = `driver-door-${newOpenValue ? 'opened' :  'closed'}-${moment().toISOString()}`
-        var attributes = {
-          'vehicle-uuid': vehicleUuid,
-          'driver-door-open': newOpenValue
-        };
-
-        client.sendEvent(namespace, eventName, attributes)
-        .then(() => console.log(`Door status update event delivered successfully.`))
-        .catch((error) => console.error(`Error deliverying status update event: ${error}\n${error.stack}`));
-      });
+      if (driverDoorOpen) {
+        doorOpened();
+      } else {
+        doorClosed();
+      }
     }
 
     driverDoorOpen = newOpenValue;
-    //console.log(`Driver door is ${driverDoorOpen ? 'open' : 'closed'}`);
   })
   .catch((error) => {
     console.error(`Error reading pin ${doorSensorPin}: ${error}\n${error.stack}`);
@@ -79,19 +123,11 @@ function hoodSensorLoop() {
     var now = moment().valueOf();
 
     if (newOpenValue != hoodOpen) {
-      lastStatusEvent = now;
-      console.log(`Sending hood status update event: hood-open=${newOpenValue}`);
-      getCogsClient().then((client) => {
-        var eventName = `hood-${newOpenValue ? 'opened' :  'closed'}-${moment().toISOString()}`
-        var attributes = {
-          'vehicle-uuid': vehicleUuid,
-          'hood-open': newOpenValue
-        };
-
-        client.sendEvent(namespace, eventName, attributes)
-        .then(() => console.log(`Hood status update event delivered successfully.`))
-        .catch((error) => console.error(`Error deliverying status update event: ${error}\n${error.stack}`));
-      });
+      if (hoodOpen) {
+        hoodOpened();
+      } else {
+        hoodClosed();
+      }
     }
 
     hoodOpen = newOpenValue;
