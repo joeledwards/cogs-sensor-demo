@@ -33,9 +33,10 @@ var vehicleUuid = 'be56ed7a-e24d-4cd5-8f3e-437c87ca31a9';
 
 // Sends an event via the supplied Cogs client
 function sendEvent(namespace, attributes, eventName) {
-  return getCogsClient().sendEvent(namespace, eventName, attributes)
-      .then(() => `Event '${eventName}' sent successfully.`)
-      .catch((error) => `Error sending event '${eventName}': ${error}\n${error.stack}`)
+  return getCogsClient()
+      .then((client) => client.sendEvent(namespace, eventName, attributes))
+      .then(() => console.log(`Event '${eventName}' sent successfully.`))
+      .catch((error) => console.error(`Error sending event '${eventName}': ${error}\n${error.stack}`));
 }
 
 // Door Event
@@ -43,7 +44,7 @@ function doorEvent(isOpen) {
   var eventName = `driver-door-${isOpen ? 'opened' :  'closed'}-${moment().toISOString()}`
   var attributes = {
     'vehicle-uuid': vehicleUuid,
-    'driver-door-open': newOpenValue
+    'driver-door-open': isOpen
   };
 
   sendEvent(namespace, attributes, eventName);
@@ -66,7 +67,7 @@ function hoodEvent(isOpen) {
   var eventName = `hood-${isOpen ? 'opened' :  'closed'}-${moment().toISOString()}`
   var attributes = {
     'vehicle-uuid': vehicleUuid,
-    'hood-open': newOpenValue
+    'hood-open': isOpen
   };
 
   sendEvent(namespace, attributes, eventName);
@@ -89,7 +90,7 @@ var driverDoorOpen = false;
 function doorSensorLoop() {
   pi.get(doorSensorPin)
   .then((value) => {
-    var newOpenValue = value;
+    var newOpenValue = !value;
     var now = moment().valueOf();
 
     if (newOpenValue != driverDoorOpen) {
@@ -119,7 +120,7 @@ var hoodOpen = true;
 function hoodSensorLoop() {
   pi.get(hoodSensorPin)
   .then((value) => {
-    var newOpenValue = !value;
+    var newOpenValue = value;
     var now = moment().valueOf();
 
     if (newOpenValue != hoodOpen) {
